@@ -1,6 +1,7 @@
 const englishWordsData = require("../data/englishWords")
 const express = require('express');
 const router = express.Router();
+const binarySearch = require("../utils/binarySearch")
 
 
 router.get('/check', async function(req, res, next) {
@@ -14,7 +15,7 @@ router.get('/check', async function(req, res, next) {
 
   const englishWords = await englishWordsData.get()
   const validWords = wordsList.filter(word => {
-    return !englishWords.includes(word.toLowerCase())
+    return binarySearch(englishWords, word) === false
   })
   
   res.send(validWords);
