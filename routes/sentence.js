@@ -15,7 +15,7 @@ router.get('/check', async function(req, res, next) {
 
   const englishWords = await englishWordsData.get()
   const validWords = wordsList.filter(word => {
-    return binarySearch(englishWords, word) === false
+    return binarySearch(englishWords, word.toLowerCase()) === false
   })
   
   res.send(validWords);
