@@ -21,8 +21,8 @@ function App() {
       const query = querystring.stringify({ sentence: value })
       
 
-      const response = await axios.get(`http://localhost:3001/sentence/check?${query}`);
-      console.log(response.data, querystring.stringify({ foo: 'bar' }));
+      const response = await axios.get(`${process.env.REACT_APP_EC2_ADDRESS}/sentence/check?${query}`);
+      console.log(response.data);
 
       setFormOutput({ words: response.data, shouldShow: true });
     } catch (e) {
