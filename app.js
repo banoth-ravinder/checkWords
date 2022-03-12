@@ -3,11 +3,20 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const cors = require('cors');
 
 const indexRouter = require('./routes/index');
 const sentenceRouter = require('./routes/sentence');
 
 const app = express();
+
+// setting up CORS setting
+const corsOptions = {
+  origin: "*",
+  methods: ['GET', 'PUT', 'POST', 'DELETE', 'HEAD'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
+app.use(cors(corsOptions));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
