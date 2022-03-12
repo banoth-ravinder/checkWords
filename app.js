@@ -8,6 +8,8 @@ const cors = require('cors');
 const indexRouter = require('./routes/index');
 const sentenceRouter = require('./routes/sentence');
 
+const englishWordsData = require('./data/englishWords')
+
 const app = express();
 
 // setting up CORS setting
@@ -30,6 +32,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/sentence', sentenceRouter);
+
+// fetching the english words from the link
+englishWordsData.init();
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
